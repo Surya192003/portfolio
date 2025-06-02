@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surya Pranav Varma | Resume Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .profile-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/profile-bg.jpg') center/cover no-repeat;
+            opacity: 0.9;
+        }
+        
+        .name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+        }
+        
+        .title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+            position: relative;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .section-content {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Card Styles */
+        .card {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .card-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+        
+        .card-date {
+            background: rgba(37, 99, 235, 0.2);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .card-content {
+            margin-top: 1rem;
+        }
+        
+        .card-content ul {
+            padding-left: 1.5rem;
+        }
+        
+        .card-content li {
+            margin-bottom: 0.7rem;
+            position: relative;
+        }
+        
+        .card-content li::before {
+            content: "▹";
+            position: absolute;
+            left: -1.5rem;
+            color: var(--accent);
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        
+        .skill-category h3 i {
+            font-size: 1.4rem;
+        }
+        
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .skill-item {
+            background: rgba(37, 99, 235, 0.15);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Research Section */
+        .research-card {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .research-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .research-link:hover {
+            color: white;
+            gap: 0.7rem;
+        }
+        
+        /* Extracurricular */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .activity-card {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .activity-card:hover {
+            border-color: rgba(37, 99, 235, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        .activity-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .activity-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .activity-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        
+        /* Additional Info */
+        .additional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .info-card {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        .info-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            color: var(--accent);
+        }
+        
+        .info-content {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #94a3b8;
+            font-size: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2.5rem;
+            }
+            
+            .title {
+                font-size: 1.2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-content {
+                padding: 1.5rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-image"></div>
+                <h1 class="name">Surya Pranav Varma</h1>
+                <div class="title">Master's in Open Data Practice | Full-Stack Developer</div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+353 89 4627216</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>dsuryapranavvarma@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Dublin, Ireland</span>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://github.com/Surya192003" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/surya-pranav-9586a71b5" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.researchgate.net/publication/" class="social-link" target="_blank">
+                        <i class="fab fa-researchgate"></i>
+                    </a>
+                    <a href="mailto:dsuryapranavvarma@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Objective Section -->
+    <section id="objective">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Career Objective</h2>
+            </div>
+            <div class="section-content animate">
+                <div class="card">
+                    <div class="card-content">
+                        <p>Master's student in Open Data Practice with strong technical skills in full-stack development and cloud technologies. Seeking opportunities to leverage expertise in Angular, Node.js, AWS, and research capabilities in computer vision solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+            </div>
+            <div class="section-content">
+                <div class="card animate delay-1">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">National College of Ireland</h3>
+                            <div class="card-subtitle">MSc Open Data Practice</div>
+                        </div>
+                        <div class="card-date">Present</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Dublin, Ireland</p>
+                    </div>
+                </div>
+                
+                <div class="card animate delay-2">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">KL University</h3>
+                            <div class="card-subtitle">B.Tech Computer Science & Engineering (Honors)</div>
+                        </div>
+                        <div class="card-date">2020 - 2024</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Vijayawada, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+            </div>
+            <div class="section-content">
+                <div class="card animate delay-1">
+                    <div class="card-content">
+                        <ul>
+                            <li><strong>AWS Certified Cloud Practitioner</strong> (AWS CP)</li>
+                            <li><strong>Red Hat Certified Specialist in OpenShift Application Development</strong> (EX-183)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical Skills</h2>
+            </div>
+            <div class="section-content">
+                <div class="skills-grid">
+                    <div class="skill-category animate delay-1">
+                        <h3><i class="fas fa-code"></i> Programming</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">C</div>
+                            <div class="skill-item">C++</div>
+                            <div class="skill-item">Java</div>
+                            <div class="skill-item">Python</div>
+                            <div class="skill-item">MySQL</div>
+                            <div class="skill-item">JavaScript/TypeScript</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category animate delay-2">
+                        <h3><i class="fas fa-laptop-code"></i> Web Technologies</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">Angular</div>
+                            <div class="skill-item">Node.js</div>
+                            <div class="skill-item">REST APIs</div>
+                            <div class="skill-item">Web Scraping</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category animate delay-3">
+                        <h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">AWS (S3, EC2)</div>
+                            <div class="skill-item">Docker</div>
+                            <div class="skill-item">Payment Gateway Integration</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category animate delay-1">
+                        <h3><i class="fas fa-brain"></i> Data Science</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">CNN</div>
+                            <div class="skill-item">Computer Vision</div>
+                            <div class="skill-item">Data Processing</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category animate delay-2">
+                        <h3><i class="fas fa-users"></i> Soft Skills</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">Leadership</div>
+                            <div class="skill-item">Event Management</div>
+                            <div class="skill-item">Strategic Planning</div>
+                            <div class="skill-item">Team Collaboration</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category animate delay-3">
+                        <h3><i class="fas fa-language"></i> Languages</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">English (Professional)</div>
+                            <div class="skill-item">Telugu (Native)</div>
+                            <div class="skill-item">Hindi (Fluent)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional Experience</h2>
+            </div>
+            <div class="section-content">
+                <div class="card animate delay-1">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Sharkify.AI</h3>
+                            <div class="card-subtitle">Software Development Intern</div>
+                        </div>
+                        <div class="card-date">Jul 2024 - Nov 2024</div>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Engineered PayU payment gateway integration handling transaction security and error logging</li>
+                            <li>Developed full-stack web application using Angular frontend with Node.js backend services</li>
+                            <li>Implemented automated testing for payment workflows reducing failures by 30%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Research</h2>
+            </div>
+            <div class="section-content">
+                <div class="card animate delay-1">
+                    <div class="card-header">
+                        <h3 class="card-title">Face Recognition using CNN and Amazon S3</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Designed scalable facial recognition system using Convolutional Neural Networks</li>
+                            <li>Integrated AWS S3 for secure storage achieving 99.2% retrieval efficiency</li>
+                        </ul>
+                        <a href="https://www.researchgate.net/publication/" class="research-link" target="_blank">
+                            <span>View on ResearchGate</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extracurricular Section -->
+    <section id="extracurricular">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Extracurricular Activities</h2>
+            </div>
+            <div class="section-content">
+                <div class="activities-grid">
+                    <div class="activity-card animate delay-1">
+                        <div class="activity-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="activity-title">Director, KLU-CSE Extension Activities</h3>
+                        <p class="activity-description">Managed 15+ technical/cultural events (Samyak, Flem Flare) with 500+ participants</p>
+                    </div>
+                    
+                    <div class="activity-card animate delay-2">
+                        <div class="activity-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="activity-title">Training Lead, FUSION Club</h3>
+                        <p class="activity-description">Conducted skill development workshops for 200+ students</p>
+                    </div>
+                    
+                    <div class="activity-card animate delay-3">
+                        <div class="activity-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3 class="activity-title">Core Member, Dance Club</h3>
+                        <p class="activity-description">Performed in 10+ intercollegiate competitions</p>
+                    </div>
+                    
+                    <div class="activity-card animate delay-4">
+                        <div class="activity-icon">
+                            <i class="fas fa-dice-d20"></i>
+                        </div>
+                        <h3 class="activity-title">DBDS</h3>
+                        <p class="activity-description">Instructor in DBDS as my Habbit and participated in dance events conducted by them in Ireland</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Information -->
+    <section id="additional">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Additional Information</h2>
+            </div>
+            <div class="section-content">
+                <div class="additional-grid">
+                    <div class="info-card animate delay-1">
+                        <div class="info-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="info-title">Interests</h3>
+                        <div class="info-content">
+                            Dancing (Contemporary)<br>
+                            Roller Skating<br>
+                            Competitive Badminton
+                        </div>
+                    </div>
+                    
+                    <div class="info-card animate delay-2">
+                        <div class="info-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 class="info-title">Personal Details</h3>
+                        <div class="info-content">
+                            DOB: 19 January 2003<br>
+                            Nationality: Indian<br>
+                            Gender: Male
+                        </div>
+                    </div>
+                    
+                    <div class="info-card animate delay-3">
+                        <div class="info-icon">
+                            <i class="fas fa-passport"></i>
+                        </div>
+                        <h3 class="info-title">Work Authorization</h3>
+                        <div class="info-content">
+                            Eligible for Irish Stamp 2 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024 Surya Pranav Varma | Resume Portfolio</p>
+            <p>Designed with ❤️ and Angular-inspired animations</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
